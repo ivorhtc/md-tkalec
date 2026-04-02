@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MD Tkalec j.d.o.o. – Vodoinstalacije i centralno grijanje</title>
+
+  <!-- ============================================================
+       KONTAKT VARIJABLE – ispunite ovdje
+       ============================================================ -->
+  <script>
+    const KONTAKT = {
+      mobitel:    "UPIŠITE BROJ MOBITELA",          // npr. "+385 91 234 5678"
+      whatsapp:   "UPIŠITE WHATSAPP BROJ",           // format: 385912345678 (bez + i razmaka)
+      email:      "UPIŠITE EMAIL ADRESU",            // npr. "info@mdtkalec.hr"
+      adresaTekst:"UPIŠITE ADRESU ZA PRIKAZ",        // npr. "Ulica bana Jelačića 1, 10000 Zagreb"
+      adresaMaps: "https://maps.app.goo.gl/SBhbLEfuLgAKXWJq9",        // cijeli https://maps.google.com/... link
+    };
+
+    // Footer – pravni podaci
+    const TVRTKA = {
+      ime:    "MD Tkalec j.d.o.o.",
+      oib:    "UPIŠITE OIB",
+      mb:     "UPIŠITE MB",
+      adresa: "UPIŠITE ADRESU ZA FOOTER",
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Palette ── */
+    :root {
+      --blue:      #1a6fa8;
+      --blue-dark: #0d4a73;
+      --red:       #c94f28;
+      --red-dark:  #9b3519;
+      --cream:     #f2ede8;
+      --dark:      #1a1a1a;
+      --mid:       #3a3a3a;
+      --light:     #ffffff;
+      --accent:    #c94f28;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100svh;
+      background: var(--blue-dark);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* big decorative letters */
+    .hero::before {
+      content: "MD";
+      position: absolute;
+      bottom: -0.1em;
+      right: -0.05em;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(14rem, 40vw, 36rem);
+      line-height: 1;
+      color: rgba(255,255,255,0.04);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* pipe icon accent bar */
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 6px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--red) 0%, var(--red-dark) 100%);
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.4rem 3rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .logo {
+      display: flex;
+      align-items: baseline;
+      gap: 0.3rem;
+    }
+    .logo-md {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 2.6rem;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .logo-md .m { color: var(--light); }
+    .logo-md .d { color: var(--red); }
+
+    .logo-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: rgba(255,255,255,0.75);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    nav a.cta-nav {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--light);
+      text-decoration: none;
+      border: 2px solid var(--red);
+      padding: 0.55rem 1.4rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    nav a.cta-nav:hover { background: var(--red); }
+
+    /* HERO CONTENT */
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 3rem 3rem 3rem 4rem;
+      position: relative;
+      z-index: 5;
+      max-width: 760px;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .hero-eyebrow::before {
+      content: "";
+      display: inline-block;
+      width: 32px;
+      height: 2px;
+      background: var(--red);
+    }
+
+    .hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      line-height: 0.95;
+      color: var(--light);
+      text-transform: uppercase;
+      margin-bottom: 1.8rem;
+    }
+    .hero h1 span { color: var(--red); }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.7);
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-badges {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+    .badge {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.85);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.5rem 1rem;
+    }
+
+    /* HERO BOTTOM CONTACT STRIP */
+    .hero-strip {
+      background: rgba(0,0,0,0.35);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      position: relative;
+      z-index: 10;
+    }
+    .strip-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1.1rem 2.5rem;
+      flex: 1 1 220px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      text-decoration: none;
+      color: var(--light);
+      transition: background 0.2s;
+    }
+    .strip-item:last-child { border-right: none; }
+    .strip-item:hover { background: rgba(201,79,40,0.25); }
+    .strip-icon { font-size: 1.3rem; flex-shrink: 0; }
+    .strip-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+    }
+    .strip-value {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--light);
+    }
+
+    /* ── SERVICES ── */
+    .services {
+      background: var(--cream);
+      padding: 6rem 3rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .section-eyebrow {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+    }
+    .section-eyebrow::before,
+    .section-eyebrow::after {
+      content: "";
+      display: inline-block;
+      width: 28px;
+      height: 2px;
+      background: var(--red);
+    }
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      text-transform: uppercase;
+      color: var(--dark);
+      line-height: 1;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: var(--dark);
+      padding: 3rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+    .service-card:hover { transform: translateY(-4px); }
+    .service-card::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--red);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s ease;
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-card:nth-child(2) { background: var(--blue-dark); }
+    .service-card:nth-child(2)::before { background: var(--light); }
+
+    .service-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 5rem;
+      line-height: 1;
+      color: rgba(255,255,255,0.06);
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+    }
+
+    .service-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 1.7rem;
+      text-transform: uppercase;
+      color: var(--light);
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+    .service-title span { color: var(--red); }
+    .service-card:nth-child(2) .service-title span { color: #6fc8f5; }
+
+    .service-text {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.62);
+    }
+
+    /* ── WHY US ── */
+    .why {
+      background: var(--blue-dark);
+      padding: 6rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .why::after {
+      content: "✓";
+      position: absolute;
+      right: -0.1em;
+      bottom: -0.15em;
+      font-size: 28rem;
+      color: rgba(255,255,255,0.03);
+      pointer-events: none;
+      line-height: 1;
+    }
+
+    .why .section-eyebrow { color: #6fc8f5; }
+    .why .section-eyebrow::before,
+    .why .section-eyebrow::after { background: #6fc8f5; }
+    .why .section-title { color: var(--light); }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 3rem auto 0;
+    }
+
+    .why-item {
+      text-align: center;
+      padding: 2rem 1rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: border-color 0.25s, background 0.25s;
+    }
+    .why-item:hover {
+      border-color: var(--red);
+      background: rgba(201,79,40,0.08);
+    }
+    .why-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 3.5rem;
+      color: var(--red);
+      line-height: 1;
+    }
+    .why-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      margin-top: 0.4rem;
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      background: var(--cream);
+      padding: 6rem 3rem;
+    }
+
+    .contact-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    @media (max-width: 640px) { .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+    .contact-info h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      color: var(--dark);
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.4rem;
+    }
+    .contact-icon {
+      width: 42px;
+      height: 42px;
+      background: var(--dark);
+      color: var(--light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .contact-row a {
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      display: block;
+      transition: color 0.2s;
+    }
+    .contact-row a:hover { color: var(--red); }
+    .contact-row small {
+      display: block;
+      font-size: 0.78rem;
+      color: #888;
+      margin-top: 0.15rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+    }
+
+    /* MAP PLACEHOLDER */
+    .map-box {
+      background: #d0ccc8;
+      aspect-ratio: 4/3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+      color: var(--mid);
+    }
+    .map-box:hover { background: #c0bbb6; }
+    .map-box-icon { font-size: 2.5rem; }
+    .map-box-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .map-box-addr {
+      font-size: 0.85rem;
+      color: #666;
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      padding: 2.5rem 3rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .footer-logo .logo-md { font-size: 1.8rem; }
+    .footer-logo .logo-name { font-size: 0.95rem; color: rgba(255,255,255,0.45); }
+
+    .footer-legal {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.9;
+      text-align: right;
+    }
+    .footer-legal strong { color: rgba(255,255,255,0.6); }
+
+    @media (max-width: 600px) {
+      .footer-legal { text-align: left; }
+      nav { padding: 1.2rem 1.5rem; }
+      nav a.cta-nav { display: none; }
+      .hero-content { padding: 2rem 1.5rem; }
+      .services, .why, .contact { padding: 4rem 1.5rem; }
+      footer { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════ HERO -->
+<section class="hero">
+
+  <nav>
+    <div class="logo">
+      <img src="assets/logoColor.png" alt="logo" height="100px">
+      <!--<div class="logo-md"><span class="m">M</span><span class="d">D</span></div>
+      <div class="logo-name">Tkalec</div> -->
+    </div>
+    <a class="cta-nav" href="#kontakt">Kontaktirajte nas</a>
+  </nav>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Vodoinstalacije &amp; Grijanje</div>
+    <h1>Stručne<br>instalaterske<br><span>usluge.</span></h1>
+    <p class="hero-sub">
+      Više od dvadeset godina iskustva u ugradnji centralnog grijanja,
+      vodoinstalaterskim radovima i hitnim intervencijama – brzo, pouzdano
+      i po dogovorenoj cijeni.
+    </p>
+    <div class="hero-badges">
+      <div class="badge">🔥 Centralno grijanje</div>
+      <div class="badge">🔧 Vodoinstalaterstverio</div>
+      <div class="badge">⚡ Hitne intervencije</div>
+    </div>
+  </div>
+
+  <div class="hero-strip" id="hero-strip">
+    <a class="strip-item" id="strip-phone" href="#">
+      <span class="strip-icon">📞</span>
+      <div>
+        <div class="strip-label">Mobitel</div>
+        <div class="strip-value" id="val-phone">—</div>
+      </div>
+    </a>
+    <a class="strip-item" id="strip-wa" href="#">
+      <span class="strip-icon">💬</span>
+      <div>
+        <div class="strip-label">WhatsApp</div>
+        <div class="strip-value" id="val-wa">—</div>
+      </div>
+    </a>
+    <a class="strip-item" id="strip-email" href="#">
+      <span class="strip-icon">✉️</span>
+      <div>
+        <div class="strip-label">E-mail</div>
+        <div class="strip-value" id="val-email">—</div>
+      </div>
+    </a>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════════ SERVICES -->
+<section class="services">
+  <div class="section-header">
+    <div class="section-eyebrow">Što radimo</div>
+    <h2 class="section-title">Naše usluge</h2>
+  </div>
+
+  <div class="services-grid">
+
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-icon">🔥</div>
+      <h3 class="service-title">Ugradnja centralnog<br><span>grijanja</span></h3>
+      <p class="service-text">
+        Projektiranje, ugradnja i puštanje u pogon sustava centralnog grijanja
+        za stambene i poslovne objekte. Radimo s plinskim, toplovonskim i
+        dizalicama topline — uvijek prema tehničkim propisima i uz potrebnu
+        dokumentaciju. Savjetujemo vas o najefikasnijem rješenju za vaš prostor.
+      </p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-icon">🔧</div>
+      <h3 class="service-title">Vodoinstalaterske<br><span>usluge</span></h3>
+      <p class="service-text">
+        Instalacija, rekonstrukcija i popravak vodovodnih i kanalizacijskih mreža.
+        Postavljanje sanitarnih čvorova, kupaonica i kuhinja — od grube faze do
+        kompletnog završetka. Koristimo materijale dokazanih europskih proizvođača
+        s jamstvom kvalitete.
+      </p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-icon">⚡</div>
+      <h3 class="service-title">Hitne<br><span>intervencije</span></h3>
+      <p class="service-text">
+        Pucanje cijevi, kvar bojlera, propuštanje radijatora — dostupni smo
+        svaki dan. Dolazimo brzo, dijagnosticiramo problem na licu mjesta i
+        otklanjamo kvar u najkraćem mogućem roku kako biste se što prije
+        vratili u normalu.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ WHY -->
+<section class="why">
+  <div class="section-header">
+    <div class="section-eyebrow">Zašto mi?</div>
+    <h2 class="section-title">Pouzdanost koja<br>se mjeri godinama</h2>
+  </div>
+
+  <div class="why-grid">
+    <div class="why-item">
+      <div class="why-num">20+</div>
+      <div class="why-label">Godina iskustva</div>
+    </div>
+    <div class="why-item">
+      <div class="why-num">500+</div>
+      <div class="why-label">Dovršenih projekata</div>
+    </div>
+    <div class="why-item">
+      <div class="why-num">24/7</div>
+      <div class="why-label">Dostupnost</div>
+    </div>
+    <div class="why-item">
+      <div class="why-num">100%</div>
+      <div class="why-label">Zadovoljnih klijenata</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ CONTACT -->
+<section class="contact" id="kontakt">
+  <div class="section-header">
+    <div class="section-eyebrow">Kontakt</div>
+    <h2 class="section-title">Javite nam se</h2>
+  </div>
+
+  <div class="contact-inner">
+
+    <div class="contact-info">
+      <h3>Dostupni smo<br>za sva pitanja</h3>
+
+      <div class="contact-row">
+        <div class="contact-icon">📞</div>
+        <div>
+          <a id="c-phone" href="#">—</a>
+          <small>Mobitel / pozivi</small>
+        </div>
+      </div>
+
+      <div class="contact-row">
+        <div class="contact-icon">💬</div>
+        <div>
+          <a id="c-wa" href="#">WhatsApp</a>
+          <small>Poruke i upiti</small>
+        </div>
+      </div>
+
+      <div class="contact-row">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <a id="c-email" href="#">—</a>
+          <small>E-mail</small>
+        </div>
+      </div>
+
+      <div class="contact-row">
+        <div class="contact-icon">📍</div>
+        <div>
+          <a id="c-maps" href="#" target="_blank" rel="noopener">—</a>
+          <small>Lokacija / Google Maps</small>
+        </div>
+      </div>
+    </div>
+
+    <a id="map-link" href="#" target="_blank" rel="noopener" class="map-box">
+      <div class="map-box-icon">🗺️</div>
+      <div class="map-box-text">Prikaži na karti</div>
+      <div class="map-box-addr" id="map-addr">—</div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ FOOTER -->
+<footer>
+
+  <div class="footer-logo">
+    <div class="logo">
+      <div class="logo-md"><span class="m">M</span><span class="d">D</span></div>
+      <div class="logo-name">Tkalec</div>
+    </div>
+  </div>
+
+  <div class="footer-legal" id="footer-legal">
+    <!-- popunjava se JavaScriptom -->
+  </div>
+
+</footer>
+
+<!-- ═══════════════════════════════════════════════════ INIT -->
+<script>
+  // Popuni sve kontakt podatke iz varijabli na vrhu dokumenta
+  document.addEventListener('DOMContentLoaded', () => {
+    const { mobitel, whatsapp, email, adresaTekst, adresaMaps } = KONTAKT;
+    const { ime, oib, mb, adresa } = TVRTKA;
+
+    // Hero strip
+    const stripPhone = document.getElementById('strip-phone');
+    stripPhone.href = `tel:${mobitel.replace(/\s/g, '')}`;
+    document.getElementById('val-phone').textContent = mobitel;
+
+    const stripWa = document.getElementById('strip-wa');
+    stripWa.href = `https://wa.me/${whatsapp}`;
+    document.getElementById('val-wa').textContent = 'Pišite nam';
+
+    const stripEmail = document.getElementById('strip-email');
+    stripEmail.href = `mailto:${email}`;
+    document.getElementById('val-email').textContent = email;
+
+    // Contact section
+    const cp = document.getElementById('c-phone');
+    cp.href = `tel:${mobitel.replace(/\s/g, '')}`;
+    cp.textContent = mobitel;
+
+    const cw = document.getElementById('c-wa');
+    cw.href = `https://wa.me/${whatsapp}`;
+    cw.textContent = 'WhatsApp poruka';
+
+    const ce = document.getElementById('c-email');
+    ce.href = `mailto:${email}`;
+    ce.textContent = email;
+
+    const cm = document.getElementById('c-maps');
+    cm.href = adresaMaps;
+    cm.textContent = adresaTekst;
+
+    document.getElementById('map-link').href = adresaMaps;
+    document.getElementById('map-addr').textContent = adresaTekst;
+
+    // Footer legal
+    document.getElementById('footer-legal').innerHTML = `
+      <strong>${ime}</strong><br>
+      OIB: ${oib} &nbsp;|&nbsp; MB: ${mb}<br>
+      ${adresa}
+    `;
+  });
+</script>
+
+</body>
+</html>
