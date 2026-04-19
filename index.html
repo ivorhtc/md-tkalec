@@ -14,7 +14,7 @@
       whatsapp:   "UPIŠITE WHATSAPP BROJ",           // format: 385912345678 (bez + i razmaka)
       email:      "UPIŠITE EMAIL ADRESU",            // npr. "info@mdtkalec.hr"
       adresaTekst:"UPIŠITE ADRESU ZA PRIKAZ",        // npr. "Ulica bana Jelačića 1, 10000 Zagreb"
-      adresaMaps: "https://maps.app.goo.gl/SBhbLEfuLgAKXWJq9",        // cijeli https://maps.google.com/... link
+      adresaMaps: "https://maps.app.goo.gl/SBhbLEfuLgAKXWJq9",
     };
 
     // Footer – pravni podaci
@@ -85,6 +85,7 @@
     .logo-md .m { color: var(--light); }
     .logo-md .d { color: var(--red); }
     .logo-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.3rem; color: rgba(255,255,255,0.75); letter-spacing: 0.04em; text-transform: uppercase; }
+    .nav-buttons { display: flex; gap: 0.6rem; align-items: center; }
     nav a.cta-nav {
       font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem;
       letter-spacing: 0.1em; text-transform: uppercase; color: var(--light);
@@ -92,6 +93,10 @@
       transition: background 0.2s;
     }
     nav a.cta-nav:hover { background: var(--red); }
+    nav a.cta-nav.outline {
+      border-color: rgba(255,255,255,0.35); color: rgba(255,255,255,0.8);
+    }
+    nav a.cta-nav.outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.6); }
 
     .hero-content {
       display: flex; flex-direction: column; justify-content: center;
@@ -339,7 +344,10 @@
     <div class="logo">
       <img src="assets/logoColor.png" alt="logo" height="100px">
     </div>
-    <a class="cta-nav" href="#kontakt">Kontaktirajte nas</a>
+    <div class="nav-buttons">
+      <a class="cta-nav outline" id="nav-cjenik" href="#" target="_blank" rel="noopener">Cjenik</a>
+      <a class="cta-nav" href="#kontakt">Kontaktirajte nas</a>
+    </div>
   </nav>
 
   <div class="hero-content">
@@ -530,6 +538,7 @@
     document.getElementById('val-email').textContent = email;
 
     document.getElementById('cjenik-link').href = CJENIK_URL;
+    document.getElementById('nav-cjenik').href = CJENIK_URL;
 
     const cp = document.getElementById('c-phone');
     cp.href = `tel:${mobitel.replace(/\s/g, '')}`; cp.textContent = mobitel;
